@@ -90,7 +90,7 @@ class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNas
         if(temCarta()) {
             return
         } else {
-            throw PessoaSemCartaException("$nome não tem carta para poder conduzir este tipo de veiculos")
+            throw PessoaSemCartaException("$nome não tem carta para conduzir o veículo indicado")
         }
     }
 

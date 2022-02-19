@@ -17,7 +17,7 @@ fun main(){
     var d = Date()
     val motor = Motor(1500,1500)
     var pos = Posicao()
-    var carro = Carro(motor,"AA-11-AA",pos,d)
+    var carro = Carro(motor,"AA-11-AA",d)
     var carro2 = Carro(motor,"BB-22-BB",pos,d)
     var pessoa = Pessoa("jorge",d)
     var pessoa2 = Pessoa("tropa",d)

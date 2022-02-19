@@ -16,7 +16,7 @@ class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNas
     }
 
 
-    fun pesquisarVeiculo(identificador : String) : Veiculo?{
+    fun pesquisarVeiculo(identificador : String) : Veiculo{
 
         for (i in 0 until veiculos.size) {
             if(veiculos[i].getIdentificador() == identificador) {

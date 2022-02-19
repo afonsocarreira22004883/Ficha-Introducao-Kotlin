@@ -12,7 +12,7 @@ class Carro(var motor: Motor, identificador: String, posicao: Posicao, dataDeAqu
         } else {
             motor.ligar()
             posicao.alterarPosicaoPara(x,y)
-            motor.desLigar()
+            motor.desligar()
         }
     }
 
@@ -30,7 +30,7 @@ class Carro(var motor: Motor, identificador: String, posicao: Posicao, dataDeAqu
 
     fun desLigar() {
         try {
-            motor.desLigar()
+            motor.desligar()
         } catch (e : VeiculoDesligadoException) {
             println(e.message)
         }

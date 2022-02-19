@@ -16,7 +16,7 @@ class Motor(var cavalos : Int,var cilindrada : Int,var ligado : Boolean) {
         ligado = true
     }
 
-    fun desLigar() {
+    fun desligar() {
         if(!ligado) {
             throw VeiculoDesligadoException("O veiculo já se encontra desligado")
         }

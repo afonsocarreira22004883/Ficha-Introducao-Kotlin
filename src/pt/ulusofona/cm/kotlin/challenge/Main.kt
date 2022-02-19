@@ -14,7 +14,7 @@ class Main {
 
 
 fun main(){
-    var d = Date(2022,2,18)
+    var d = Date()
     val motor = Motor(1500,1500)
     var pos = Posicao()
     var carro = Carro(motor,"AA-11-AA",pos,d)
@@ -26,5 +26,6 @@ fun main(){
     //pessoa.moverVeiculoPara("AA-11-AA",0,12)
     pessoa.pesquisarVeiculo("AA-11-AA")
     pessoa.venderVeiculo(carro2,pessoa2)
+    println(carro2.dataDeAquisicao)
 
 }

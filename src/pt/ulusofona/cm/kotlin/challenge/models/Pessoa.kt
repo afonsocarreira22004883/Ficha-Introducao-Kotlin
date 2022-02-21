@@ -4,9 +4,10 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.AlterarPosicaoException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.MenorDeIdadeException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.PessoaSemCartaException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.util.*
 
-class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNascimento: Date, var carta: Carta?, var posicao: Posicao) {
+class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNascimento: Date, var carta: Carta?, var posicao: Posicao) :Movimentavel {
 
     constructor(nome: String,dataDeNascimento: Date) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,null, Posicao())
     constructor(nome: String,dataDeNascimento: Date, carta: Carta?) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,carta,Posicao())

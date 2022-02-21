@@ -72,14 +72,14 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
                         temCarta2()
                     } catch (e : PessoaSemCartaException) {
                         println(e.message)
-                        return
+                        throw e
                     }
                 }
                 try {
                     veiculos[i].moverPara(x,y)
                 } catch (e : AlterarPosicaoException) {
                     println(e.message)
-                    return
+                    throw e
                 }
             }
         }
@@ -103,6 +103,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
             carta = Carta()
         } catch (e : MenorDeIdadeException) {
             println(e.message)
+            throw e
         }
     }
 

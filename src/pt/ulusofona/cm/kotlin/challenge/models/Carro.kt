@@ -31,6 +31,7 @@ class Carro(identificador: String,var motor: Motor ) : Veiculo(identificador),Li
             motor.ligar()
         } catch (e : VeiculoLigadoException) {
             println(e.message)
+            throw e
         }
     }
 
@@ -39,6 +40,7 @@ class Carro(identificador: String,var motor: Motor ) : Veiculo(identificador),Li
             motor.desligar()
         } catch (e : VeiculoDesligadoException) {
             println(e.message)
+            throw e
         }
     }
 

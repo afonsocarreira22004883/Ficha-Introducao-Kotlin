@@ -33,6 +33,9 @@ abstract class Veiculo( var identificador : String, var posicao: Posicao, var da
     }
 
     abstract fun requerCarta() : Boolean
+    override fun toString(): String {
+        return "Veiculo | $identificador | $dataDeAquisicao | Posicao | ${posicao.x} | ${posicao.y}"
+    }
 
 
- }
+}

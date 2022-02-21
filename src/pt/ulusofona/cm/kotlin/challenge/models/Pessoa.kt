@@ -7,18 +7,19 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.util.*
 
-class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNascimento: Date, var carta: Carta?, var posicao: Posicao) :Movimentavel {
+class Pessoa(val nome: String, var veiculos: MutableList<Veiculo>, val dataDeNascimento: Date, var carta: Carta?, var posicao: Posicao) :Movimentavel {
 
     constructor(nome: String,dataDeNascimento: Date) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,null, Posicao())
-    constructor(nome: String,dataDeNascimento: Date, carta: Carta?) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,carta,Posicao())
+    //constructor(nome: String,dataDeNascimento: Date, carta: Carta?) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,carta,Posicao())
 
     fun comprarVeiculo(veiculo: Veiculo) {
+        veiculo.alterarDataAquisicao()
         veiculos.add(veiculo)
     }
 
 
-    fun pesquisarVeiculo(identificador : String) : Veiculo{
 
+    fun pesquisarVeiculo(identificador : String) : Veiculo{
         for (i in 0 until veiculos.size) {
             if(veiculos[i].getIdentificador() == identificador) {
                 return veiculos[i]
@@ -26,6 +27,7 @@ class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNas
         }
         return throw VeiculoNaoEncontradoException("$nome não possui o veiculo com a seguinte matricula : $identificador")
     }
+
 
     fun venderVeiculo(veiculo: Veiculo,comprador : Pessoa) : Boolean{
         /*if(pesquisarVeiculo(veiculo.getIdentificador()) == null) {
@@ -40,8 +42,13 @@ class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNas
             return true
         }*/
 
-        try {
-            pesquisarVeiculo(veiculo.getIdentificador())
+        return try {
+            try {
+                pesquisarVeiculo(veiculo.getIdentificador())
+            } catch (e : VeiculoNaoEncontradoException) {
+                println(e.message)
+                return false
+            }
             veiculo.alterarDataAquisicao()
             comprador.comprarVeiculo(veiculo)
             for (i in 0 until veiculos.size) {
@@ -49,10 +56,10 @@ class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNas
                     veiculos.removeAt(i)
                 }
             }
-            return true
+            true
         } catch (e : VeiculoNaoEncontradoException) {
             println(e.message)
-            return false
+            false
         }
     }
 
@@ -109,7 +116,7 @@ class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNas
     }
 
     override fun toString(): String {
-        return "Bicicleta | $nome | $dataDeNascimento | Posicao | ${posicao.x} | ${posicao.y}"
+        return "Pessoa | $nome | $dataDeNascimento | Posicao | ${posicao.x} | ${posicao.y}"
     }
 
 

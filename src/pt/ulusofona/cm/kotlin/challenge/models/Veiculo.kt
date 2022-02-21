@@ -3,9 +3,14 @@ package pt.ulusofona.cm.kotlin.challenge.models
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.util.*
 
-abstract class Veiculo( val identificador : String) : Movimentavel {
+abstract class Veiculo() : Movimentavel {
+    var identificador: String = ""
     var posicao = Posicao()
     var dataDeAquisicao = Date()
+
+    constructor(identificador: String) : this() {
+        this.identificador = identificador
+    }
 
 
     /*fun ajeitarData(data : String) : List<String>{
@@ -29,6 +34,7 @@ abstract class Veiculo( val identificador : String) : Movimentavel {
     }*/
 
     abstract fun requerCarta() : Boolean
+
     override fun toString(): String {
         return "Veiculo | $identificador | $dataDeAquisicao | Posicao | ${posicao.x} | ${posicao.y}"
     }

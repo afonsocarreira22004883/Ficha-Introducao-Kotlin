@@ -7,8 +7,11 @@ import java.util.*
 class Carro(var motor: Motor, identificador: String, posicao: Posicao, dataDeAquisicao: Date) : Veiculo(identificador, posicao, dataDeAquisicao) {
     //constructor(motor: Motor,identificador: String,dataDeAquisicao: Date) : this(motor,identificador,Posicao(),dataDeAquisicao)
 
+    override fun requerCarta(): Boolean {
+        return true
+    }
 
-    override fun mover(x:Int, y:Int) {
+    override fun moverPara(x:Int, y:Int) {
         if(motor.estaLigado()) {
             posicao.alterarPosicaoPara(x,y)
         } else {

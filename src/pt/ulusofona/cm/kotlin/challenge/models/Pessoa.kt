@@ -58,7 +58,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
     @Throws(MenorDeIdadeException::class)
     fun eMaiorIdade(): Boolean {
         val data = Date()
-        val idade = dataDeNascimento.year - data.year
+        val idade = data.year - dataDeNascimento.year
         if (idade < 18) {
             throw MenorDeIdadeException("Não tem idade para tirar a carta!")
         }

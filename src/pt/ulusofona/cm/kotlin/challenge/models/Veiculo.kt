@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 abstract class Veiculo( var identificador : String, var posicao: Posicao, var dataDeAquisicao :Date) {
-    constructor(identificador : String, dataDeAquisicao :Date) : this(identificador,Posicao(),dataDeAquisicao)
+    //constructor(identificador : String, dataDeAquisicao :Date) : this(identificador,Posicao(),dataDeAquisicao)
 
 
     abstract fun mover(x :Int, y : Int)

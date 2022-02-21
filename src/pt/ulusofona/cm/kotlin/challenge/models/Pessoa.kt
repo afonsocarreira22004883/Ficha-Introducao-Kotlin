@@ -93,8 +93,9 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
 
     @Throws(MenorDeIdadeException::class)
     fun tirarCarta() {
-        eMaiorIdade()
-        carta = Carta()
+        if(eMaiorIdade()) {
+            carta = Carta()
+        }
     }
 
     override fun toString(): String {

@@ -11,10 +11,8 @@ fun main(){
     val p = Pessoa("toy",Date())
     p.comprarVeiculo(c)
     p.comprarVeiculo(bike)
+    p.tirarCarta()
     p.carta = Carta()
     p.moverVeiculoPara("b",1,1)
-    p.moverVeiculoPara("a",2,2)
-    println(bike.posicao)
-    println(c.posicao)
-    p.moverVeiculoPara("a",2,2)
+
 }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 abstract class Veiculo( var identificador : String, var posicao: Posicao, var dataDeAquisicao :Date) : Movimentavel {
-    //constructor(identificador : String, dataDeAquisicao :Date) : this(identificador,Posicao(),dataDeAquisicao)
+    constructor(identificador : String) : this(identificador,Posicao(),Date())
 
 
 

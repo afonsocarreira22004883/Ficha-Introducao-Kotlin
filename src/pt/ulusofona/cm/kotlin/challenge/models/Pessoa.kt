@@ -35,38 +35,16 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
     }
 
 
-    fun venderVeiculo(veiculo: Veiculo,comprador : Pessoa) : Boolean{
-        /*if(pesquisarVeiculo(veiculo.getIdentificador()) == null) {
-            return false
-        } else {
-            comprador.comprarVeiculo(veiculo)
-            for (i in 0 until veiculos.size) {
-                if(veiculos[i].getIdentificador() == veiculo.getIdentificador()) {
-                    veiculos.removeAt(i)
+    fun venderVeiculo(identificador: String,comprador : Pessoa) : Boolean{
+            for (i in 0..veiculos.size) {
+                if(veiculos[i].identificador == identificador) {
+                    veiculos[i].alterarDataAquisicao()
+                    comprador.comprarVeiculo(veiculos[i])
+                    veiculos.remove(veiculos[i])
+                    return true
                 }
             }
-            return true
-        }*/
-
-        return try {
-            try {
-                pesquisarVeiculo(veiculo.identificador)
-            } catch (e : VeiculoNaoEncontradoException) {
-                println(e.message)
-                return false
-            }
-            veiculo.alterarDataAquisicao()
-            comprador.comprarVeiculo(veiculo)
-            for (i in 0 until veiculos.size) {
-                if(veiculos[i].identificador == veiculo.identificador) {
-                    veiculos.removeAt(i)
-                }
-            }
-            true
-        } catch (e : VeiculoNaoEncontradoException) {
-            println(e.message)
-            false
-        }
+        return false
     }
 
     fun eMaiorIdade() : Boolean {

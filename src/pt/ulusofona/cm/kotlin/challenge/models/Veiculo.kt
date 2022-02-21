@@ -3,14 +3,13 @@ package pt.ulusofona.cm.kotlin.challenge.models
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.util.*
 
-abstract class Veiculo(val identificador: String) : Movimentavel {
+abstract class Veiculo() : Movimentavel {
+    var identificador: String = ""
+    var posicao = Posicao()
+    var dataDeAquisicao = Date()
 
-    var posicao: Posicao
-    var dataDeAquisicao: Date
-
-    init {
-        this.posicao = Posicao(0, 0)
-        this.dataDeAquisicao = Date()
+    constructor(identificador: String) : this() {
+        this.identificador = identificador
     }
 
 

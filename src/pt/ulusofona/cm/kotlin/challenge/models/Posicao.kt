@@ -4,9 +4,6 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.AlterarPosicaoException
 
 class Posicao(var x: Int, var y: Int) {
 
-    constructor() : this(0, 0) {
-    }
-
 
     @Throws(AlterarPosicaoException::class)
     fun alterarPosicaoPara(x: Int, y: Int) {

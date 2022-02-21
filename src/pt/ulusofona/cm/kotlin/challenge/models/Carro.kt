@@ -28,7 +28,7 @@ class Carro(identificador: String, var motor: Motor) : Veiculo(identificador), L
         return motor.estaLigado()
     }
 
-    @Throws(VeiculoDesligadoException::class)
+    @Throws(VeiculoLigadoException::class)
     override fun ligar() {
         motor.ligar()
     }

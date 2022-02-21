@@ -11,7 +11,7 @@ import java.util.*
 class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
     var veiculos: MutableList<Veiculo> = emptyList<Veiculo>().toMutableList()
     var carta: Carta? = null
-    var posicao: Posicao = Posicao()
+    var posicao: Posicao = Posicao(0,0)
 
     companion object {
         fun formatarDatas(data: Date): String {

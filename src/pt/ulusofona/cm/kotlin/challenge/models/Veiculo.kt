@@ -5,7 +5,7 @@ import java.util.*
 
 abstract class Veiculo() : Movimentavel {
     var identificador: String = ""
-    var posicao = Posicao()
+    var posicao = Posicao(0,0)
     var dataDeAquisicao = Date()
 
     constructor(identificador: String) : this() {

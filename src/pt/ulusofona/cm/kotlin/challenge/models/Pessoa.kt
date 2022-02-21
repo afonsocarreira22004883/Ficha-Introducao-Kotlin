@@ -14,6 +14,10 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
 
     //constructor(nome: String,dataDeNascimento: Date, carta: Carta?) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,carta,Posicao())
 
+    override fun moverPara(x: Int, y: Int) {
+        posicao.alterarPosicaoPara(x,y)
+    }
+
     fun comprarVeiculo(veiculo: Veiculo) {
         veiculo.alterarDataAquisicao()
         veiculos.add(veiculo)
@@ -23,7 +27,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
 
     fun pesquisarVeiculo(identificador : String) : Veiculo{
         for (i in 0 until veiculos.size) {
-            if(veiculos[i].getIdentificador() == identificador) {
+            if(veiculos[i].identificador == identificador) {
                 return veiculos[i]
             }
         }
@@ -46,7 +50,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
 
         return try {
             try {
-                pesquisarVeiculo(veiculo.getIdentificador())
+                pesquisarVeiculo(veiculo.identificador)
             } catch (e : VeiculoNaoEncontradoException) {
                 println(e.message)
                 return false
@@ -54,7 +58,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
             veiculo.alterarDataAquisicao()
             comprador.comprarVeiculo(veiculo)
             for (i in 0 until veiculos.size) {
-                if(veiculos[i].getIdentificador() == veiculo.getIdentificador()) {
+                if(veiculos[i].identificador == veiculo.identificador) {
                     veiculos.removeAt(i)
                 }
             }
@@ -77,7 +81,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
 
     fun moverVeiculoPara(identificador : String,x : Int, y : Int) {
         for (i in 0 until veiculos.size) {
-            if(veiculos[i].getIdentificador() == identificador) {
+            if(veiculos[i].identificador == identificador) {
                 if(veiculos[i] is Carro ) {
                     try {
                         temCarta2()

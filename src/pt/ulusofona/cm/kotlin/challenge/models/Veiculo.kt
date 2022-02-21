@@ -1,10 +1,6 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-import pt.ulusofona.cm.kotlin.challenge.exceptions.AlterarPosicaoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 abstract class Veiculo( var identificador : String) : Movimentavel {
@@ -27,10 +23,10 @@ abstract class Veiculo( var identificador : String) : Movimentavel {
         dataDeAquisicao = Date()
     }
 
-    @JvmName("getIdentificador1")
+    /*@JvmName("getIdentificador1")
     fun getIdentificador() : String {
         return identificador
-    }
+    }*/
 
     abstract fun requerCarta() : Boolean
     override fun toString(): String {

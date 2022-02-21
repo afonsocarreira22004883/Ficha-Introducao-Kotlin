@@ -8,6 +8,7 @@ class Posicao(var x: Int, var y: Int) {
     }
 
 
+    @Throws(AlterarPosicaoException::class)
     fun alterarPosicaoPara(x: Int, y: Int) {
         if (x == this.x && y == this.y) {
             throw AlterarPosicaoException("Tentaste mover-te para a mesma posição!")

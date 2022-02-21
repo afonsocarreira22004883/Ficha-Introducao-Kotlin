@@ -10,12 +10,9 @@ class Bicicleta(identificador: String) : Veiculo(identificador) {
         return false
     }
 
+    @Throws(AlterarPosicaoException::class)
     override fun moverPara(x:Int, y:Int) {
-        try {
             posicao.alterarPosicaoPara(x,y)
-        } catch (e : AlterarPosicaoException) {
-            throw e
-        }
     }
 
     override fun toString(): String {

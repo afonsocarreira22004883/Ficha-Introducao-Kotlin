@@ -16,4 +16,5 @@ fun main(){
     p.moverVeiculoPara("a",2,2)
     println(bike.posicao)
     println(c.posicao)
+    p.moverVeiculoPara("a",2,2)
 }

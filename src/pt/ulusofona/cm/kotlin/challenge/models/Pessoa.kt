@@ -8,25 +8,22 @@ import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
+class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
     var veiculos: MutableList<Veiculo> = emptyList<Veiculo>().toMutableList()
     var carta: Carta? = null
     var posicao: Posicao = Posicao()
 
     companion object {
-        fun formatarDatas(data : Date) : String {
+        fun formatarDatas(data: Date): String {
             val f = SimpleDateFormat("dd-MM-yyyy")
             val d = f.format(data)
             return d
         }
     }
 
+    @Throws(AlterarPosicaoException::class)
     override fun moverPara(x: Int, y: Int) {
-        try {
-            posicao.alterarPosicaoPara(x,y)
-        } catch (e : AlterarPosicaoException) {
-            throw e
-        }
+            posicao.alterarPosicaoPara(x, y)
     }
 
     fun comprarVeiculo(veiculo: Veiculo) {
@@ -35,10 +32,10 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
     }
 
 
-
-    fun pesquisarVeiculo(identificador : String) : Veiculo{
+    @Throws(VeiculoNaoEncontradoException::class)
+    fun pesquisarVeiculo(identificador: String): Veiculo {
         for (i in 0 until veiculos.size) {
-            if(veiculos[i].identificador == identificador) {
+            if (veiculos[i].identificador == identificador) {
                 return veiculos[i]
             }
         }
@@ -46,51 +43,44 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
     }
 
 
-    fun venderVeiculo(identificador: String,comprador : Pessoa) : Boolean{
-            for (i in 0..veiculos.size) {
-                if(veiculos[i].identificador == identificador) {
-                    veiculos[i].alterarDataAquisicao()
-                    comprador.comprarVeiculo(veiculos[i])
-                    veiculos.remove(veiculos[i])
-                    return true
-                }
+    fun venderVeiculo(identificador: String, comprador: Pessoa): Boolean {
+        for (i in 0..veiculos.size) {
+            if (veiculos[i].identificador == identificador) {
+                veiculos[i].alterarDataAquisicao()
+                comprador.comprarVeiculo(veiculos[i])
+                veiculos.remove(veiculos[i])
+                return true
             }
+        }
         return false
     }
 
-    fun eMaiorIdade() : Boolean {
+    @Throws(MenorDeIdadeException::class)
+    fun eMaiorIdade(): Boolean {
         val data = Date()
         val idade = dataDeNascimento.year - data.year
-        if(idade < 18) {
+        if (idade < 18) {
             throw MenorDeIdadeException("Não tem idade para tirar a carta!")
         }
         return true
     }
 
 
-    fun moverVeiculoPara(identificador : String,x : Int, y : Int) {
+    @Throws(PessoaSemCartaException::class, AlterarPosicaoException::class)
+    fun moverVeiculoPara(identificador: String, x: Int, y: Int) {
         for (i in 0 until veiculos.size) {
-            if(veiculos[i].identificador == identificador) {
-                if(veiculos[i] is Carro ) {
-                    try {
-                        temCarta2()
-                    } catch (e : PessoaSemCartaException) {
-                        println(e.message)
-                        throw e
-                    }
+            if (veiculos[i].identificador == identificador) {
+                if (veiculos[i] is Carro) {
+                    temCarta2()
                 }
-                try {
-                    veiculos[i].moverPara(x,y)
-                } catch (e : AlterarPosicaoException) {
-                    println(e.message)
-                    throw e
-                }
+                veiculos[i].moverPara(x, y)
             }
         }
     }
 
+    @Throws(PessoaSemCartaException::class)
     fun temCarta2() {
-        if(temCarta()) {
+        if (temCarta()) {
             return
         } else {
             throw PessoaSemCartaException("$nome não tem carta para conduzir o veículo indicado")
@@ -101,18 +91,14 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
         return carta != null
     }
 
+    @Throws(MenorDeIdadeException::class)
     fun tirarCarta() {
-        try {
-            eMaiorIdade()
-            carta = Carta()
-        } catch (e : MenorDeIdadeException) {
-            println(e.message)
-            throw e
-        }
+        eMaiorIdade()
+        carta = Carta()
     }
 
     override fun toString(): String {
-        return "Pessoa | $nome | ${formatarDatas(dataDeNascimento)} | Posicao | ${posicao.x} | ${posicao.y}"
+        return "Pessoa | $nome | ${formatarDatas(dataDeNascimento)} | Posicao | x:${posicao.x} | y:${posicao.y}"
     }
 
 

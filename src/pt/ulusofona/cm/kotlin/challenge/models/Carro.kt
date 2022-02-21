@@ -6,51 +6,36 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoLigadoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
 import java.util.*
 
-class Carro(identificador: String,var motor: Motor ) : Veiculo(identificador),Ligavel {
+class Carro(identificador: String, var motor: Motor) : Veiculo(identificador), Ligavel {
     //constructor(motor: Motor,identificador: String,dataDeAquisicao: Date) : this(motor,identificador,Posicao(),dataDeAquisicao)
 
     override fun requerCarta(): Boolean {
         return true
     }
 
-    override fun moverPara(x:Int, y:Int) {
-        if(motor.estaLigado()) {
-            try {
-                posicao.alterarPosicaoPara(x,y)
-            } catch (e : AlterarPosicaoException) {
-                throw e
-            }
+    @Throws(AlterarPosicaoException::class)
+    override fun moverPara(x: Int, y: Int) {
+        if (motor.estaLigado()) {
+            posicao.alterarPosicaoPara(x, y)
         } else {
             motor.ligar()
-            try {
-                posicao.alterarPosicaoPara(x,y)
-            } catch (e : AlterarPosicaoException) {
-                throw e
-            }
+            posicao.alterarPosicaoPara(x, y)
             motor.desligar()
         }
     }
 
-    override fun estaLigado() : Boolean {
+    override fun estaLigado(): Boolean {
         return motor.estaLigado()
     }
 
+    @Throws(VeiculoDesligadoException::class)
     override fun ligar() {
-        try {
-            motor.ligar()
-        } catch (e : VeiculoLigadoException) {
-            println(e.message)
-            throw e
-        }
+        motor.ligar()
     }
 
+    @Throws(VeiculoDesligadoException::class)
     override fun desligar() {
-        try {
-            motor.desligar()
-        } catch (e : VeiculoDesligadoException) {
-            println(e.message)
-            throw e
-        }
+        motor.desligar()
     }
 
     override fun toString(): String {

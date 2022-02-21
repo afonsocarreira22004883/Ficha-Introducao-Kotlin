@@ -77,7 +77,7 @@ class Pessoa(var nome: String, var veiculos: MutableList<Veiculo>, var dataDeNas
                     }
                 }
                 try {
-                    veiculos[i].mover(x,y)
+                    veiculos[i].moverPara(x,y)
                 } catch (e : AlterarPosicaoException) {
                     println(e.message)
                     return

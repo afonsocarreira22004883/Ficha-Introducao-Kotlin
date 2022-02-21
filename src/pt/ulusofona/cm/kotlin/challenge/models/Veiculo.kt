@@ -19,7 +19,7 @@ abstract class Veiculo() : Movimentavel {
     abstract fun requerCarta() : Boolean
 
     override fun toString(): String {
-        return "Veiculo | $identificador | ${Pessoa.formatarDatas(dataDeAquisicao)} | Posicao | ${posicao.x} | ${posicao.y}"
+        return "Veiculo | $identificador | ${Pessoa.formatarDatas(dataDeAquisicao)} | Posicao | x:${posicao.x} | y:${posicao.y}"
     }
 
 

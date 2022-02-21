@@ -43,7 +43,7 @@ class Carro(identificador: String,var motor: Motor ) : Veiculo(identificador),Li
     }
 
     override fun toString(): String {
-        return "Carro | $identificador | $dataDeAquisicao | Posicao | ${posicao.x} | ${posicao.y}"
+        return "Carro | $identificador | ${Pessoa.formatarDatas(dataDeAquisicao)} | Posicao | ${posicao.x} | ${posicao.y}"
     }
 
 

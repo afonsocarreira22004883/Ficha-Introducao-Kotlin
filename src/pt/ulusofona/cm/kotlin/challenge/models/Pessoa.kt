@@ -5,6 +5,7 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.MenorDeIdadeException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.PessoaSemCartaException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
@@ -12,7 +13,12 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
     var carta: Carta? = null
     var posicao: Posicao = Posicao()
 
-    //constructor(nome: String,dataDeNascimento: Date, carta: Carta?) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,carta,Posicao())
+    companion object {
+        fun formatarDatas(data : Date) {
+            val f = SimpleDateFormat("dd-MM-yyyy")
+            val d = f.format(data)
+        }
+    }
 
     override fun moverPara(x: Int, y: Int) {
         posicao.alterarPosicaoPara(x,y)
@@ -100,7 +106,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
     }
 
     override fun toString(): String {
-        return "Pessoa | $nome | $dataDeNascimento | Posicao | ${posicao.x} | ${posicao.y}"
+        return "Pessoa | $nome | ${formatarDatas(dataDeNascimento)} | Posicao | ${posicao.x} | ${posicao.y}"
     }
 
 

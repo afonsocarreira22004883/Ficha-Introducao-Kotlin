@@ -34,7 +34,7 @@ class Carro(var motor: Motor, identificador: String) : Veiculo(identificador),Li
         }
     }
 
-    fun desLigar() {
+    override fun desligar() {
         try {
             motor.desligar()
         } catch (e : VeiculoDesligadoException) {

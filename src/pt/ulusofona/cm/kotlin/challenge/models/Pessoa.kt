@@ -7,9 +7,11 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.util.*
 
-class Pessoa(val nome: String, var veiculos: MutableList<Veiculo>, val dataDeNascimento: Date, var carta: Carta?, var posicao: Posicao) :Movimentavel {
+class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
+    var veiculos: MutableList<Veiculo> = emptyList<Veiculo>().toMutableList()
+    var carta: Carta? = null
+    var posicao: Posicao = Posicao()
 
-    constructor(nome: String,dataDeNascimento: Date) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,null, Posicao())
     //constructor(nome: String,dataDeNascimento: Date, carta: Carta?) : this (nome, emptyList<Veiculo>().toMutableList(),dataDeNascimento,carta,Posicao())
 
     fun comprarVeiculo(veiculo: Veiculo) {

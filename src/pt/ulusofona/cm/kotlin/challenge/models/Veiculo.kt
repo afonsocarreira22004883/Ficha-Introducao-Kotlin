@@ -7,9 +7,9 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
-abstract class Veiculo( var identificador : String, var posicao: Posicao, var dataDeAquisicao :Date) : Movimentavel {
-    constructor(identificador : String) : this(identificador,Posicao(),Date())
-
+abstract class Veiculo( var identificador : String) : Movimentavel {
+    var posicao = Posicao()
+    var dataDeAquisicao = Date()
 
 
     /*fun ajeitarData(data : String) : List<String>{

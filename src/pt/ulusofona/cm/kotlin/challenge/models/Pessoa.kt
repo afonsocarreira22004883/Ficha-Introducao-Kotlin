@@ -14,9 +14,10 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
     var posicao: Posicao = Posicao()
 
     companion object {
-        fun formatarDatas(data : Date) {
+        fun formatarDatas(data : Date) : String {
             val f = SimpleDateFormat("dd-MM-yyyy")
             val d = f.format(data)
+            return d
         }
     }
 

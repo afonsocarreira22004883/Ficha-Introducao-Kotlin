@@ -1,5 +1,6 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
+import pt.ulusofona.cm.kotlin.challenge.exceptions.AlterarPosicaoException
 import java.util.*
 
 class Bicicleta(identificador: String) : Veiculo(identificador) {
@@ -10,7 +11,11 @@ class Bicicleta(identificador: String) : Veiculo(identificador) {
     }
 
     override fun moverPara(x:Int, y:Int) {
-        posicao.alterarPosicaoPara(x,y)
+        try {
+            posicao.alterarPosicaoPara(x,y)
+        } catch (e : AlterarPosicaoException) {
+            throw e
+        }
     }
 
     override fun toString(): String {

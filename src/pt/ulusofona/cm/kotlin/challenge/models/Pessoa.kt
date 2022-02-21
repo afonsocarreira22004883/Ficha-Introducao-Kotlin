@@ -22,7 +22,11 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) :Movimentavel {
     }
 
     override fun moverPara(x: Int, y: Int) {
-        posicao.alterarPosicaoPara(x,y)
+        try {
+            posicao.alterarPosicaoPara(x,y)
+        } catch (e : AlterarPosicaoException) {
+            throw e
+        }
     }
 
     fun comprarVeiculo(veiculo: Veiculo) {

@@ -5,7 +5,7 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoLigadoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
 import java.util.*
 
-class Carro(var motor: Motor, identificador: String) : Veiculo(identificador),Ligavel {
+class Carro(identificador: String,var motor: Motor ) : Veiculo(identificador),Ligavel {
     //constructor(motor: Motor,identificador: String,dataDeAquisicao: Date) : this(motor,identificador,Posicao(),dataDeAquisicao)
 
     override fun requerCarta(): Boolean {

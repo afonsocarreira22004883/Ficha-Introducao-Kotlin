@@ -8,7 +8,7 @@ import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
+data class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
     var veiculos: MutableList<Veiculo> = emptyList<Veiculo>().toMutableList()
     var carta: Carta? = null
     var posicao: Posicao = Posicao(0,0)

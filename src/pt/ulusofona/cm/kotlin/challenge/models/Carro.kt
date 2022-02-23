@@ -1,13 +1,11 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
 import pt.ulusofona.cm.kotlin.challenge.exceptions.AlterarPosicaoException
-import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoDesligadoException
-import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoLigadoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
-import java.util.*
+
 
 class Carro(identificador: String, var motor: Motor) : Veiculo(identificador), Ligavel {
-    //constructor(motor: Motor,identificador: String,dataDeAquisicao: Date) : this(motor,identificador,Posicao(),dataDeAquisicao)
+
 
     override fun requerCarta(): Boolean {
         return true
@@ -28,12 +26,12 @@ class Carro(identificador: String, var motor: Motor) : Veiculo(identificador), L
         return motor.estaLigado()
     }
 
-    @Throws(VeiculoLigadoException::class)
+
     override fun ligar() {
         motor.ligar()
     }
 
-    @Throws(VeiculoDesligadoException::class)
+
     override fun desligar() {
         motor.desligar()
     }

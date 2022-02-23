@@ -70,8 +70,8 @@ data class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
     fun moverVeiculoPara(identificador: String, x: Int, y: Int) {
         for (i in 0 until veiculos.size) {
             if (veiculos[i].identificador == identificador) {
-                if (veiculos[i] is Carro) {
-                    temCarta2()
+                if (veiculos[i].requerCarta() && !temCarta()) {
+                    throw PessoaSemCartaException("$nome não tem carta para conduzir o veículo indicado")
                 }
                 veiculos[i].moverPara(x, y)
             }

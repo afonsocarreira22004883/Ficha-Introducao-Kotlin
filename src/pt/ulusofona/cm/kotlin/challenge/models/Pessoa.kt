@@ -44,7 +44,7 @@ data class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
 
 
     fun venderVeiculo(identificador: String, comprador: Pessoa): Boolean {
-        for (i in 0..veiculos.size) {
+        for (i in 0 until veiculos.size) {
             if (veiculos[i].identificador == identificador) {
                 veiculos[i].alterarDataAquisicao()
                 comprador.comprarVeiculo(veiculos[i])
@@ -66,7 +66,7 @@ data class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
     }
 
 
-    @Throws(PessoaSemCartaException::class, AlterarPosicaoException::class)
+    @Throws(AlterarPosicaoException::class,PessoaSemCartaException::class)
     fun moverVeiculoPara(identificador: String, x: Int, y: Int) {
         for (i in 0 until veiculos.size) {
             if (veiculos[i].identificador == identificador) {
@@ -78,14 +78,6 @@ data class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
         }
     }
 
-    @Throws(PessoaSemCartaException::class)
-    fun temCarta2() {
-        if (temCarta()) {
-            return
-        } else {
-            throw PessoaSemCartaException("$nome não tem carta para conduzir o veículo indicado")
-        }
-    }
 
     fun temCarta(): Boolean {
         return carta != null
@@ -96,6 +88,10 @@ data class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
         if(eMaiorIdade()) {
             carta = Carta()
         }
+    }
+
+    fun ligarCarro(carro: Carro) {
+        carro.motor.ligar()
     }
 
     override fun toString(): String {

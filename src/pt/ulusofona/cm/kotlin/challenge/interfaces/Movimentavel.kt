@@ -4,5 +4,5 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.AlterarPosicaoException
 
 interface Movimentavel {
     @Throws(AlterarPosicaoException::class)
-    abstract fun moverPara(x : Int,y : Int)
+    fun moverPara(x : Int,y : Int)
 }

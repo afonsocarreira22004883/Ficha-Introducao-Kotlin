@@ -94,6 +94,10 @@ data class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
         carro.motor.ligar()
     }
 
+    fun desligarCarro(carro: Carro) {
+        carro.motor.desligar()
+    }
+
     override fun toString(): String {
         return "Pessoa | $nome | ${formatarDatas(dataDeNascimento)} | Posicao | x:${posicao.x} | y:${posicao.y}"
     }
